@@ -1,7 +1,7 @@
 import "./Form.css";
 
 export default function Form({ onAddActivity }) {
-  function handleAddActivity(event) {
+  function handleSubmit(event) {
     // event.preventDefault();
     // // function creates the data name and email from the form below
     // const formData = new FormData(event.target);
@@ -31,7 +31,7 @@ export default function Form({ onAddActivity }) {
   }
 
   return (
-    <form onAddActivity={handleAddActivity}>
+    <form onSubmit={handleSubmit}>
       <h2>Add new activity:</h2>
       <label htmlFor="name">Name:</label>
       <input type="text" name="name" id="name" />
