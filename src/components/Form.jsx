@@ -20,11 +20,16 @@ export default function Form({ onAddActivity }) {
     // event.target.elements.name.focus();
 
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
+    const formElements = event.target.elements;
 
-    onAddActivity(data);
-    console.log(data);
+    const formInput = {
+      name: formElements.name.value,
+      isForGoodWeather: formElements.weather.checked,
+    };
+
+    console.log("new form input: ", formInput);
+
+    onAddActivity(formInput);
 
     event.target.reset();
     event.target.elements.name.focus();
@@ -35,7 +40,7 @@ export default function Form({ onAddActivity }) {
       <h2>Add new activity</h2>
       <div className="form-field-name">
         <label htmlFor="name">Activity name</label>
-        <input type="text" name="name" id="name" />
+        <input type="text" name="name" id="name" required />
       </div>
       <div className="form-field-weather">
         <label htmlFor="weather">For good weather?</label>

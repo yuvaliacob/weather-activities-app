@@ -28,6 +28,16 @@ export default function App() {
     setActivities([...activities, { ...newActivity, id: uid() }]);
   }
 
+  // const goodWeatherActivities = activities.filter(
+  //   (activity) => activity.weather.checked
+  // );
+  // console.log(goodWeatherActivities);
+
+  // const badWeatherActivities = activities.filter(
+  //   (activity) => activity.weather.checked
+  // );
+  // console.log(badWeatherActivities);
+
   return (
     <main>
       <List activities={activities} />
