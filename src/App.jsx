@@ -6,21 +6,6 @@ import Header from "./components/Header";
 import List from "./components/List";
 import { useState, useEffect } from "react";
 
-// {
-//   id: 45454,
-//   Name: "Tillmann",
-//   isForGoodWeather: true,
-// },
-
-// const [activities, setActivities] = useLocalStorageState("activities", {
-//   defaultValue: [];
-// });
-// const [filter, setFilter] = useLocalStorageState("filter", {
-//   defaultValue: "all",
-// });
-
-const isGoodWeather = true;
-
 const apiUrl = "https://example-apis.vercel.app/api/weather/europe";
 
 export default function App() {
@@ -28,70 +13,46 @@ export default function App() {
     defaultValue: [],
   });
 
+  const [weather, setWeather] = useState("");
+
   function handleAddActivity(newActivity) {
     setActivities([...activities, { ...newActivity, id: uid() }]);
   }
 
-  const [isGoodWeather, setIsGoodWeather] = useState("");
+  async function getWeather() {
+    const response = await fetch(apiUrl);
+    const weather = await response.json();
 
-  // const [weatherIcon, setWeatherIcon] = useState("");
-  // => this is our FETCH
-  function getWeather() {
-    (async () => {
-      const response = await fetch(apiUrl);
-      const weather = await response.json();
-
-      setIsGoodWeather(weather.isGoodWeather);
-      console.log(weather.isGoodWeather);
-
-      if (isGoodWeather === true) {
-        // Filter activities for good weather
-        const goodWeatherActivities = activities.filter(
-          (activity) => activity.weather
-        );
-        setActivities(goodWeatherActivities);
-      } else {
-        // Filter activities for bad weather
-        const badWeatherActivities = activities.filter(
-          (activity) => !activity.weather
-        );
-        setActivities(badWeatherActivities);
-      }
-
-      // setIsGoodWeather(response.ok ? "✅" : "❌");
-    })();
+    setWeather(weather);
+    console.log("Weather object from API: ", weather);
   }
-
-  useEffect(() => {
-    getWeather();
-  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(getWeather, 5000);
 
     return () => clearInterval(intervalId);
   }, []);
-  // END OF FETCH
 
-  // const filteredActivities = activities.filter(
-  //   (activity) => isGoodWeather === activity.weather
-  // );
-  // console.log("this is our filter:", filteredActivities);
+  const goodWeather = weather.isGoodWeather;
 
-  // const goodWeatherActivities = activities.filter(
-  //   (activity) => activity.weather.checked
-  // );
-  // console.log(goodWeatherActivities);
+  const goodWeatherActivities = activities.filter(
+    (activity) => activity.isForGoodWeather === true
+  );
+  console.log("Good weather activities: ", goodWeatherActivities);
 
-  // const badWeatherActivities = activities.filter(
-  //   (activity) => activity.weather.checked
-  // );
-  // console.log(badWeatherActivities);
+  const badWeatherActivities = activities.filter(
+    (activity) => activity.isForGoodWeather === false
+  );
+  console.log("BAD weather activities: ", badWeatherActivities);
+
+  console.log("Is the weather good? ", weather.isGoodWeather);
 
   return (
     <main>
       <Header />
-      <List activities={activities} />
+      <List
+        activities={goodWeather ? goodWeatherActivities : badWeatherActivities}
+      />
       <Form onAddActivity={handleAddActivity} />
     </main>
   );
