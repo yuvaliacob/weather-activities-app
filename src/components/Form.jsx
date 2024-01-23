@@ -2,23 +2,6 @@ import "./Form.css";
 
 export default function Form({ onAddActivity }) {
   function handleSubmit(event) {
-    // event.preventDefault();
-    // // function creates the data name and email from the form below
-    // const formData = new FormData(event.target);
-    // const data = Object.fromEntries(formData);
-    // const formInput = {
-    //   name: data.name.value,
-    //   isForGoodWeather: data.weather.checked,
-    // };
-
-    // console.log(formInput);
-
-    // // calls the prop-function from App.js and passes the created data name and email as arguments (lifts up)
-    // onAddActivity(formInput);
-
-    // event.target.reset();
-    // event.target.elements.name.focus();
-
     event.preventDefault();
     const formElements = event.target.elements;
 

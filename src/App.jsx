@@ -16,7 +16,18 @@ export default function App() {
   const [weather, setWeather] = useState("");
 
   function handleAddActivity(newActivity) {
-    setActivities([...activities, { ...newActivity, id: uid() }]);
+    // Check if the activity already exists
+    const isActivityExists = activities.some(
+      (activity) => activity.name === newActivity.name
+    );
+
+    // console.log("Duplicate activity? ", isActivityExists);
+
+    if (isActivityExists) {
+      alert("Activity already exists!");
+    } else {
+      setActivities([...activities, { ...newActivity, id: uid() }]);
+    }
   }
 
   async function getWeather() {
@@ -29,7 +40,7 @@ export default function App() {
 
   const condition = weather.condition;
   const temperature = weather.temperature;
-  console.log("Header: condition: ", condition, "temperature: ", temperature);
+  // console.log("Header: condition: ", condition, "temperature: ", temperature);
 
   useEffect(() => {
     getWeather();
@@ -46,14 +57,14 @@ export default function App() {
   const goodWeatherActivities = activities.filter(
     (activity) => activity.isForGoodWeather === true
   );
-  console.log("Good weather activities: ", goodWeatherActivities);
+  // console.log("Good weather activities: ", goodWeatherActivities);
 
   const badWeatherActivities = activities.filter(
     (activity) => activity.isForGoodWeather === false
   );
-  console.log("BAD weather activities: ", badWeatherActivities);
+  // console.log("BAD weather activities: ", badWeatherActivities);
 
-  console.log("Is the weather good? ", weather.isGoodWeather);
+  // console.log("Is the weather good? ", weather.isGoodWeather);
 
   function handleDeleteActivity(activityToRemove) {
     setActivities(
