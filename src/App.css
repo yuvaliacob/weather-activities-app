@@ -4,26 +4,16 @@
   padding: 0;
 }
 
-body {
-  display: flex;
-  place-items: center;
-  /* min-width: 320px;
-  min-height: 100vh; */
+main {
+  margin-top: 150px;
+}
+
+.good-weather-bg {
+  background: linear-gradient(to bottom, var(--color-white), #36a6fc);
   color: var(--color-dark);
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.good-weather {
-  background: linear-gradient(to bottom, white, #36a6fc);
-}
-
-.bad-weather {
+.bad-weather-bg {
   background: linear-gradient(to bottom, var(--color-dark), #1f70af);
+  color: var(--color-white);
 }

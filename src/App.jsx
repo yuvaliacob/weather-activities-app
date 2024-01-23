@@ -5,8 +5,7 @@ import Form from "./components/Form";
 import Header from "./components/Header";
 import List from "./components/List";
 import { useState, useEffect } from "react";
-
-// const apiUrl = "https://example-apis.vercel.app/api/weather/europe";
+import "./components/List";
 
 export default function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -53,7 +52,7 @@ export default function App() {
 
   useEffect(() => {
     getWeather();
-  }, []);
+  }, [apiUrl]);
 
   useEffect(() => {
     const intervalId = setInterval(getWeather, 5000);
@@ -65,11 +64,11 @@ export default function App() {
 
   useEffect(() => {
     if (goodWeather) {
-      document.body.classList.add("good-weather");
-      document.body.classList.remove("bad-weather");
+      document.body.classList.add("good-weather-bg");
+      document.body.classList.remove("bad-weather-bg");
     } else {
-      document.body.classList.add("bad-weather");
-      document.body.classList.remove("good-weather");
+      document.body.classList.add("bad-weather-bg");
+      document.body.classList.remove("good-weather-bg");
     }
   }, [goodWeather]);
 
@@ -92,7 +91,7 @@ export default function App() {
   }
 
   return (
-    <main>
+    <>
       <Header
         condition={condition}
         temperature={temperature}
@@ -103,11 +102,16 @@ export default function App() {
         }
         onChangeLocation={handleChangeLocation}
       />
-      <List
-        activities={goodWeather ? goodWeatherActivities : badWeatherActivities}
-        onDeleteActivity={handleDeleteActivity}
-      />
-      <Form onAddActivity={handleAddActivity} />
-    </main>
+      <main>
+        <List
+          activities={
+            goodWeather ? goodWeatherActivities : badWeatherActivities
+          }
+          onDeleteActivity={handleDeleteActivity}
+          goodWeather={goodWeather}
+        />
+        <Form onAddActivity={handleAddActivity} />
+      </main>
+    </>
   );
 }
