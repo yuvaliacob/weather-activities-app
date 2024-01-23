@@ -1,9 +1,11 @@
 import "./Header.css";
 
-export default function Header() {
+export default function Header({ condition, temperature }) {
   return (
     <>
-      <h1>☀️ 25c</h1>
+      <h1>
+        {condition} {temperature}
+      </h1>
     </>
   );
 }
