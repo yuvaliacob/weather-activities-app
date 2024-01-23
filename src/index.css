@@ -27,11 +27,11 @@ body {
   place-items: center;
   /* min-width: 320px; */
   min-height: 100vh;
-  /* background: linear-gradient(to bottom, rgb(255, 254, 169), rgb(54, 166, 252)); */
-  background: linear-gradient(to bottom, white, #36a6fc);
-  /* background: linear-gradient(to bottom, white 0%, white 50%, #36a6fc 100%); */
+  color: white;
+  transition: background-color 0.3s ease;
 
-  background-color: white;
+  /* background: linear-gradient(to bottom, white, #36a6fc); */
+  /* background: linear-gradient(to bottom, var(--color-dark), #1f70af); */
 }
 
 a {

@@ -1,3 +1,4 @@
-.class {
-  property: value;
+.p {
+  display: flex;
+  flex-direction: column;
 }

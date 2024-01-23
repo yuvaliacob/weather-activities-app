@@ -20,12 +20,10 @@ body {
   align-items: center;
 }
 
-/* .warm {
-  background-color: yellow;
+.good-weather {
+  background: linear-gradient(to bottom, white, #36a6fc);
 }
 
-.cold {
-  background-color: blue;
-} */
-
-/* <div className={`App ${weather === 'Clear' ? 'warm' : 'cold'}`}></div> */
+.bad-weather {
+  background: linear-gradient(to bottom, var(--color-dark), #1f70af);
+}
