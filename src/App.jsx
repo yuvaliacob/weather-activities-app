@@ -27,6 +27,14 @@ export default function App() {
     console.log("Weather object from API: ", weather);
   }
 
+  const condition = weather.condition;
+  const temperature = weather.temperature;
+  console.log("Header: condition: ", condition, "temperature: ", temperature);
+
+  useEffect(() => {
+    getWeather();
+  }, []);
+
   useEffect(() => {
     const intervalId = setInterval(getWeather, 5000);
 
@@ -47,11 +55,18 @@ export default function App() {
 
   console.log("Is the weather good? ", weather.isGoodWeather);
 
+  function handleDeleteActivity(activityToRemove) {
+    setActivities(
+      activities.filter((activity) => activity.id !== activityToRemove)
+    );
+  }
+
   return (
     <main>
-      <Header />
+      <Header condition={condition} temperature={temperature} />
       <List
         activities={goodWeather ? goodWeatherActivities : badWeatherActivities}
+        onDeleteActivity={handleDeleteActivity}
       />
       <Form onAddActivity={handleAddActivity} />
     </main>
