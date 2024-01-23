@@ -19,6 +19,8 @@ import { useState, useEffect } from "react";
 //   defaultValue: "all",
 // });
 
+const isGoodWeather = true;
+
 const apiUrl = "https://example-apis.vercel.app/api/weather/europe";
 
 export default function App() {
@@ -26,10 +28,14 @@ export default function App() {
     defaultValue: [],
   });
 
+  function handleAddActivity(newActivity) {
+    setActivities([...activities, { ...newActivity, id: uid() }]);
+  }
+
   const [isGoodWeather, setIsGoodWeather] = useState("");
 
   // const [weatherIcon, setWeatherIcon] = useState("");
-
+  // => this is our FETCH
   function getWeather() {
     (async () => {
       const response = await fetch(apiUrl);
@@ -38,19 +44,39 @@ export default function App() {
       setIsGoodWeather(weather.isGoodWeather);
       console.log(weather.isGoodWeather);
 
+      if (isGoodWeather === true) {
+        // Filter activities for good weather
+        const goodWeatherActivities = activities.filter(
+          (activity) => activity.weather
+        );
+        setActivities(goodWeatherActivities);
+      } else {
+        // Filter activities for bad weather
+        const badWeatherActivities = activities.filter(
+          (activity) => !activity.weather
+        );
+        setActivities(badWeatherActivities);
+      }
+
       // setIsGoodWeather(response.ok ? "✅" : "❌");
     })();
   }
+
+  useEffect(() => {
+    getWeather();
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(getWeather, 5000);
 
     return () => clearInterval(intervalId);
   }, []);
+  // END OF FETCH
 
-  function handleAddActivity(newActivity) {
-    setActivities([...activities, { ...newActivity, id: uid() }]);
-  }
+  // const filteredActivities = activities.filter(
+  //   (activity) => isGoodWeather === activity.weather
+  // );
+  // console.log("this is our filter:", filteredActivities);
 
   // const goodWeatherActivities = activities.filter(
   //   (activity) => activity.weather.checked
