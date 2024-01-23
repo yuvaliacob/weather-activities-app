@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import List from "./components/List";
 import { useState, useEffect } from "react";
 
-const apiUrl = "https://example-apis.vercel.app/api/weather/europe";
+// const apiUrl = "https://example-apis.vercel.app/api/weather/europe";
 
 export default function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -14,6 +14,15 @@ export default function App() {
   });
 
   const [weather, setWeather] = useState("");
+
+  const [apiUrl, setApiUrl] = useState(
+    "https://example-apis.vercel.app/api/weather/europe"
+  );
+
+  function handleChangeLocation(location) {
+    setApiUrl(`https://example-apis.vercel.app/api/weather/${location}`);
+    console.log(apiUrl);
+  }
 
   function handleAddActivity(newActivity) {
     // Check if the activity already exists
@@ -92,6 +101,7 @@ export default function App() {
             ? "The weather is awesome! Go outside and:"
             : "Bad weather outside! Here's what you can do now:"
         }
+        onChangeLocation={handleChangeLocation}
       />
       <List
         activities={goodWeather ? goodWeatherActivities : badWeatherActivities}
