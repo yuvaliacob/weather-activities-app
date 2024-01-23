@@ -63,7 +63,15 @@ export default function App() {
 
   return (
     <main>
-      <Header condition={condition} temperature={temperature} />
+      <Header
+        condition={condition}
+        temperature={temperature}
+        headline={
+          goodWeather
+            ? "The weather is awesome! Go outside and:"
+            : "Bad weather outside! Here's what you can do now:"
+        }
+      />
       <List
         activities={goodWeather ? goodWeatherActivities : badWeatherActivities}
         onDeleteActivity={handleDeleteActivity}
