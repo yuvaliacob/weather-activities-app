@@ -1,42 +1,86 @@
-.entry-form {
-  width: 100%;
+.form-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-}
-
-.entry-form__title {
+  gap: 10px;
   text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.entry-form__fields {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.entry-form__field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.entry-form__field > label {
-  font-size: 12px;
-}
-
-.entry-form__field > :is(input, textarea) {
+  background-color: transparent;
+  /* border: 1px solid var(--color-white); */
   padding: 20px;
-  border: 1px solid var(--color-water-10);
-  border-radius: 4px;
-  font: inherit;
-  resize: vertical;
+  color: var(--color-white);
+  width: 300px;
 }
 
-.entry-form__button-wrapper {
-  display: flex;
-  justify-content: center;
+h2 {
+  color: var(--color-white);
 }
+
+.form-field-name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-field-weather {
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="text"] {
+  background-color: var(--color-white);
+  border-radius: 4px;
+  border: 2px solid var(--color-white);
+}
+
+/* input[type="checkbox"] {
+  border: transparent;
+} */
+
+label {
+  color: var(--color-white);
+  font-weight: bold;
+}
+
+.submit {
+  border-radius: 8px;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* button {
+  background-color: #1864ab;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+} */
+
+/* button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
