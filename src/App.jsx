@@ -7,8 +7,6 @@ import List from "./components/List";
 import { useState, useEffect } from "react";
 import "./components/List";
 
-// const apiUrl = "https://example-apis.vercel.app/api/weather/europe";
-
 export default function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
@@ -93,7 +91,7 @@ export default function App() {
   }
 
   return (
-    <main>
+    <>
       <Header
         condition={condition}
         temperature={temperature}
@@ -104,12 +102,16 @@ export default function App() {
         }
         onChangeLocation={handleChangeLocation}
       />
-      <List
-        activities={goodWeather ? goodWeatherActivities : badWeatherActivities}
-        onDeleteActivity={handleDeleteActivity}
-        goodWeather={goodWeather}
-      />
-      <Form onAddActivity={handleAddActivity} />
-    </main>
+      <main>
+        <List
+          activities={
+            goodWeather ? goodWeatherActivities : badWeatherActivities
+          }
+          onDeleteActivity={handleDeleteActivity}
+          goodWeather={goodWeather}
+        />
+        <Form onAddActivity={handleAddActivity} />
+      </main>
+    </>
   );
 }

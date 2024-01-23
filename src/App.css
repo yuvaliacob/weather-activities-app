@@ -4,20 +4,8 @@
   padding: 0;
 }
 
-body {
-  display: flex;
-  place-items: center;
-  /* min-width: 320px;
-  min-height: 100vh; */
-  color: var(--color-dark);
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+main {
+  margin-top: 150px;
 }
 
 .good-weather-bg {

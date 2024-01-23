@@ -21,19 +21,50 @@ export default function Header({
   function clickRainForest() {
     onChangeLocation("rainforest");
   }
+
   return (
-    <>
-      <div className="location">
-        <h3>Change Location: </h3>
-        <button onClick={clickEurope}>🏰</button>
-        <button onClick={clickArctic}>🥶</button>
-        <button onClick={clickSahara}>🏖️</button>
-        <button onClick={clickRainForest}>🌴</button>
+    <header className="header">
+      <div className="location-nav">
+        <h3>Change location:</h3>
+        <button
+          type="button"
+          id="europe"
+          className="location-button"
+          onClick={clickEurope}
+        >
+          🏰
+        </button>
+        <button
+          type="button"
+          id="arctic"
+          className="location-button"
+          onClick={clickArctic}
+        >
+          🥶
+        </button>
+        <button
+          type="button"
+          id="sahara"
+          className="location-button"
+          onClick={clickSahara}
+        >
+          🏖️
+        </button>
+        <button
+          type="button"
+          id="rainforest"
+          className="location-button"
+          onClick={clickRainForest}
+        >
+          🌴
+        </button>
       </div>
-      <h1>
-        {condition} {temperature}
-      </h1>
-      <p>{headline}</p>
-    </>
+      <div className="condition-temperature">
+        {condition} {temperature}°C
+      </div>
+      <div className="headline">
+        <h4>{headline}</h4>
+      </div>
+    </header>
   );
 }

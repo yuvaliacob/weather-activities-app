@@ -1,4 +1,52 @@
-.location {
+.header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  position: fixed;
+  height: 200;
+  width: 300px;
+
+  top: 0;
+  left: 0;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+}
+
+.location-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 300px;
+}
+
+.location-button {
+  all: unset;
+}
+
+.location-button:hover {
+  transform: scale(1.3);
+}
+
+.location-button:active {
+  box-shadow: none;
+  transform: translateY(1px);
+}
+
+.location-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.condition-temperature {
+  font-size: 44pt;
+  margin-bottom: 10px;
+}
+
+.headline {
+  width: 300px;
+  font-size: 12t;
 }
