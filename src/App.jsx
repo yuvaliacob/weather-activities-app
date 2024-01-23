@@ -5,6 +5,7 @@ import Form from "./components/Form";
 import Header from "./components/Header";
 import List from "./components/List";
 import { useState, useEffect } from "react";
+import "./components/List";
 
 // const apiUrl = "https://example-apis.vercel.app/api/weather/europe";
 
@@ -53,7 +54,7 @@ export default function App() {
 
   useEffect(() => {
     getWeather();
-  }, []);
+  }, [apiUrl]);
 
   useEffect(() => {
     const intervalId = setInterval(getWeather, 5000);
@@ -65,11 +66,11 @@ export default function App() {
 
   useEffect(() => {
     if (goodWeather) {
-      document.body.classList.add("good-weather");
-      document.body.classList.remove("bad-weather");
+      document.body.classList.add("good-weather-bg");
+      document.body.classList.remove("bad-weather-bg");
     } else {
-      document.body.classList.add("bad-weather");
-      document.body.classList.remove("good-weather");
+      document.body.classList.add("bad-weather-bg");
+      document.body.classList.remove("good-weather-bg");
     }
   }, [goodWeather]);
 
@@ -106,6 +107,7 @@ export default function App() {
       <List
         activities={goodWeather ? goodWeatherActivities : badWeatherActivities}
         onDeleteActivity={handleDeleteActivity}
+        goodWeather={goodWeather}
       />
       <Form onAddActivity={handleAddActivity} />
     </main>

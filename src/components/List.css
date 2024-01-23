@@ -21,3 +21,11 @@ li {
   border-top: 1px solid var(--color-white);
   margin: 10px 0;
 }
+
+.good-weather-li {
+  color: var(--color-dark);
+}
+
+.bad-weather-li {
+  color: var(--color-white);
+}

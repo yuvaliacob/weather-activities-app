@@ -20,10 +20,12 @@ body {
   align-items: center;
 }
 
-.good-weather {
-  background: linear-gradient(to bottom, white, #36a6fc);
+.good-weather-bg {
+  background: linear-gradient(to bottom, var(--color-white), #36a6fc);
+  color: var(--color-dark);
 }
 
-.bad-weather {
+.bad-weather-bg {
   background: linear-gradient(to bottom, var(--color-dark), #1f70af);
+  color: var(--color-white);
 }

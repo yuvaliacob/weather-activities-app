@@ -27,11 +27,7 @@ body {
   place-items: center;
   /* min-width: 320px; */
   min-height: 100vh;
-  color: white;
   transition: background-color 0.3s ease;
-
-  /* background: linear-gradient(to bottom, white, #36a6fc); */
-  /* background: linear-gradient(to bottom, var(--color-dark), #1f70af); */
 }
 
 a {
