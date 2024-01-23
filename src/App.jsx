@@ -54,6 +54,16 @@ export default function App() {
 
   const goodWeather = weather.isGoodWeather;
 
+  useEffect(() => {
+    if (goodWeather) {
+      document.body.classList.add("good-weather");
+      document.body.classList.remove("bad-weather");
+    } else {
+      document.body.classList.add("bad-weather");
+      document.body.classList.remove("good-weather");
+    }
+  }, [goodWeather]);
+
   const goodWeatherActivities = activities.filter(
     (activity) => activity.isForGoodWeather === true
   );
