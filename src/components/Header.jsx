@@ -35,7 +35,7 @@ export default function Header({
           id="europe"
           className="location-button"
           onClick={clickEurope}
-          disabled={currentLocation === "Europe"}
+          disabled={location === "Europe"}
         >
           🏰
         </button>
@@ -44,7 +44,7 @@ export default function Header({
           id="arctic"
           className="location-button"
           onClick={clickArctic}
-          disabled={currentLocation === "Arctic"}
+          disabled={location === "Arctic"}
         >
           🥶
         </button>
@@ -53,7 +53,7 @@ export default function Header({
           id="sahara"
           className="location-button"
           onClick={clickSahara}
-          disabled={currentLocation === "Sahara"}
+          disabled={location === "Sahara"}
         >
           🏖️
         </button>
@@ -62,7 +62,7 @@ export default function Header({
           id="rainforest"
           className="location-button"
           onClick={clickRainForest}
-          disabled={currentLocation === "Rainforest"}
+          disabled={location === "Rainforest"}
         >
           🌴
         </button>
