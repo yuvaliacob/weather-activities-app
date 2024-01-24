@@ -14,6 +14,8 @@ export default function App() {
 
   const [weather, setWeather] = useState("");
 
+  const [location, setLocation] = useState("Europe");
+
   const [apiUrl, setApiUrl] = useState(
     "https://example-apis.vercel.app/api/weather/europe"
   );
@@ -21,6 +23,21 @@ export default function App() {
   function handleChangeLocation(location) {
     setApiUrl(`https://example-apis.vercel.app/api/weather/${location}`);
     console.log(apiUrl);
+
+    switch (location.toLowerCase()) {
+      case "sahara":
+        setLocation("the Sahara");
+        break;
+      case "europe":
+        setLocation("Europe");
+        break;
+      case "arctic":
+        setLocation("the Arctic");
+        break;
+      case "rainforest":
+        setLocation("the Rainforest");
+        break;
+    }
   }
 
   function handleAddActivity(newActivity) {
@@ -97,13 +114,13 @@ export default function App() {
   return (
     <>
       <Header
-        currentLocation={currentLocation}
+        // currentLocation={currentLocation}
         condition={condition}
         temperature={temperature}
         headline={
           <p>
             The weather in{" "}
-            {<span className="headline-location">{currentLocation}</span>} is{" "}
+            {<span className="headline-location">{location}</span>} is{" "}
             {goodWeather
               ? "awesome! Go outside and:"
               : "terrible! Here's what you can do indoors:"}
