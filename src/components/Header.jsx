@@ -1,6 +1,7 @@
 import "./Header.css";
 
 export default function Header({
+  currentLocation,
   condition,
   temperature,
   headline,
@@ -24,13 +25,17 @@ export default function Header({
 
   return (
     <header className="header">
+      <div className="current-location">
+        {/* <h5>Location: {currentLocation}</h5> */}
+      </div>
       <div className="location-nav">
-        <h3>Change location:</h3>
+        <h4>Change location:</h4>
         <button
           type="button"
           id="europe"
           className="location-button"
           onClick={clickEurope}
+          disabled={currentLocation === "Europe"}
         >
           🏰
         </button>
@@ -39,6 +44,7 @@ export default function Header({
           id="arctic"
           className="location-button"
           onClick={clickArctic}
+          disabled={currentLocation === "Arctic"}
         >
           🥶
         </button>
@@ -47,6 +53,7 @@ export default function Header({
           id="sahara"
           className="location-button"
           onClick={clickSahara}
+          disabled={currentLocation === "Sahara"}
         >
           🏖️
         </button>
@@ -55,6 +62,7 @@ export default function Header({
           id="rainforest"
           className="location-button"
           onClick={clickRainForest}
+          disabled={currentLocation === "Rainforest"}
         >
           🌴
         </button>

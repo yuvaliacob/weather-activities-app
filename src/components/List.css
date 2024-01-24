@@ -55,10 +55,10 @@ li {
   cursor: not-allowed;
 }
 
-.separator {
+/* .separator {
   border-top: 1px solid var(--color-white);
   margin: 10px 0;
-}
+} */
 
 .good-weather-li {
   color: var(--color-dark);

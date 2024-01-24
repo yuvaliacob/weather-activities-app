@@ -24,15 +24,16 @@ export default function App() {
   }
 
   function handleAddActivity(newActivity) {
-    // Check if the activity already exists
+    // Check if the activity already exists and make it case-insensitive
     const isActivityExists = activities.some(
-      (activity) => activity.name === newActivity.name
+      (activity) =>
+        activity.name.toLowerCase() === newActivity.name.toLowerCase()
     );
 
     // console.log("Duplicate activity? ", isActivityExists);
 
     if (isActivityExists) {
-      alert("Activity already exists!");
+      alert(`Activity already exists!`);
     } else {
       setActivities([...activities, { ...newActivity, id: uid() }]);
     }
@@ -72,6 +73,9 @@ export default function App() {
     }
   }, [goodWeather]);
 
+  const currentLocation = weather.location;
+  console.log("Current location: ", weather.location);
+
   const goodWeatherActivities = activities.filter(
     (activity) => activity.isForGoodWeather === true
   );
@@ -93,12 +97,17 @@ export default function App() {
   return (
     <>
       <Header
+        currentLocation={currentLocation}
         condition={condition}
         temperature={temperature}
         headline={
-          goodWeather
-            ? "The weather is awesome! Go outside and:"
-            : "Bad weather outside! Here's what you can do now:"
+          <p>
+            The weather in{" "}
+            {<span className="headline-location">{currentLocation}</span>} is{" "}
+            {goodWeather
+              ? "awesome! Go outside and:"
+              : "terrible! Here's what you can do indoors:"}
+          </p>
         }
         onChangeLocation={handleChangeLocation}
       />
