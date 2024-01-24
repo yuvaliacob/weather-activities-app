@@ -114,7 +114,7 @@ export default function App() {
   return (
     <>
       <Header
-        // currentLocation={currentLocation}
+        currentLocation={currentLocation}
         condition={condition}
         temperature={temperature}
         headline={
