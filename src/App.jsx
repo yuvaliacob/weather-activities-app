@@ -80,15 +80,15 @@ export default function App() {
 
   const goodWeather = weather.isGoodWeather;
 
-  useEffect(() => {
-    if (goodWeather) {
-      document.body.classList.add("good-weather-bg");
-      document.body.classList.remove("bad-weather-bg");
-    } else {
-      document.body.classList.add("bad-weather-bg");
-      document.body.classList.remove("good-weather-bg");
-    }
-  }, [goodWeather]);
+  // useEffect(() => {
+  //   if (goodWeather) {
+  //     document.body.classList.add("good-weather-bg");
+  //     document.body.classList.remove("bad-weather-bg");
+  //   } else {
+  //     document.body.classList.add("bad-weather-bg");
+  //     document.body.classList.remove("good-weather-bg");
+  //   }
+  // }, [goodWeather]);
 
   const currentLocation = weather.location;
   console.log("Current location: ", weather.location);
@@ -111,33 +111,38 @@ export default function App() {
     );
   }
 
+  if (!weather) {
+    return <h1 style={{ color: "black" }}>"Loading"</h1>;
+  }
   return (
     <>
-      <Header
-        currentLocation={currentLocation}
-        condition={condition}
-        temperature={temperature}
-        headline={
-          <p>
-            The weather in{" "}
-            {<span className="headline-location">{location}</span>} is{" "}
-            {goodWeather
-              ? "awesome! Go outside and:"
-              : "terrible! Here's what you can do indoors:"}
-          </p>
-        }
-        onChangeLocation={handleChangeLocation}
-      />
-      <main>
-        <List
-          activities={
-            goodWeather ? goodWeatherActivities : badWeatherActivities
+      <div className={goodWeather ? "good-weather-bg" : "bad-weather-bg"}>
+        <Header
+          currentLocation={currentLocation}
+          condition={condition}
+          temperature={temperature}
+          headline={
+            <p>
+              The weather in{" "}
+              {<span className="headline-location">{location}</span>} is{" "}
+              {goodWeather
+                ? "awesome! Go outside and:"
+                : "terrible! Here's what you can do indoors:"}
+            </p>
           }
-          onDeleteActivity={handleDeleteActivity}
-          goodWeather={goodWeather}
+          onChangeLocation={handleChangeLocation}
         />
-        <Form onAddActivity={handleAddActivity} />
-      </main>
+        <main>
+          <List
+            activities={
+              goodWeather ? goodWeatherActivities : badWeatherActivities
+            }
+            onDeleteActivity={handleDeleteActivity}
+            goodWeather={goodWeather}
+          />
+          <Form onAddActivity={handleAddActivity} />
+        </main>
+      </div>
     </>
   );
 }

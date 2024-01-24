@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* background-color: #242424; */
   --color-white: white;
   --color-dark: #333333;
 
@@ -23,18 +23,19 @@
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   flex-wrap: wrap;
-  place-items: center;
+  /* place-items: center; */
   /* min-width: 320px; */
   min-height: 100vh;
   transition: background-color 0.3s ease;
-
-  padding-top: 60px;
 }
 
 .separator {
   border-top: 1px solid var(--color-white);
-  margin: 10px 0;
+  height: 10px;
+  width: 320px;
+
+  /* margin: 10px 0; */
 }
