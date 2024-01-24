@@ -8,6 +8,10 @@ main {
   margin-top: 150px;
 }
 
+.headline-location {
+  text-decoration: underline;
+  font-style: italic;
+}
 .good-weather-bg {
   background: linear-gradient(to bottom, var(--color-white), #36a6fc);
   color: var(--color-dark);
