@@ -80,16 +80,6 @@ export default function App() {
 
   const goodWeather = weather.isGoodWeather;
 
-  // useEffect(() => {
-  //   if (goodWeather) {
-  //     document.body.classList.add("good-weather-bg");
-  //     document.body.classList.remove("bad-weather-bg");
-  //   } else {
-  //     document.body.classList.add("bad-weather-bg");
-  //     document.body.classList.remove("good-weather-bg");
-  //   }
-  // }, [goodWeather]);
-
   const currentLocation = weather.location;
   console.log("Current location: ", weather.location);
 
