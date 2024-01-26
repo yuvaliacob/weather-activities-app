@@ -41,7 +41,6 @@ export default function App() {
   }
 
   function handleAddActivity(newActivity) {
-    // Check if the activity already exists and make it case-insensitive
     const isActivityExists = activities.some(
       (activity) =>
         activity.name.toLowerCase() === newActivity.name.toLowerCase()
@@ -80,16 +79,6 @@ export default function App() {
 
   const goodWeather = weather.isGoodWeather;
 
-  // useEffect(() => {
-  //   if (goodWeather) {
-  //     document.body.classList.add("good-weather-bg");
-  //     document.body.classList.remove("bad-weather-bg");
-  //   } else {
-  //     document.body.classList.add("bad-weather-bg");
-  //     document.body.classList.remove("good-weather-bg");
-  //   }
-  // }, [goodWeather]);
-
   const currentLocation = weather.location;
   console.log("Current location: ", weather.location);
 
@@ -112,7 +101,7 @@ export default function App() {
   }
 
   if (!weather) {
-    return <h1 style={{ color: "black" }}>"Loading"</h1>;
+    return <h1 style={{ color: "black" }}>Loading...</h1>;
   }
   return (
     <>
