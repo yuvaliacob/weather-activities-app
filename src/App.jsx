@@ -41,6 +41,7 @@ export default function App() {
   }
 
   function handleAddActivity(newActivity) {
+    // Check if the activity already exists and make it case-insensitive
     const isActivityExists = activities.some(
       (activity) =>
         activity.name.toLowerCase() === newActivity.name.toLowerCase()
@@ -101,7 +102,16 @@ export default function App() {
   }
 
   if (!weather) {
-    return <h1 style={{ color: "black" }}>Loading...</h1>;
+    return (
+      <div className="loading-animation-cotainer">
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
   }
   return (
     <>
