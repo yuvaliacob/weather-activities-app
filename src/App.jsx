@@ -112,7 +112,16 @@ export default function App() {
   }
 
   if (!weather) {
-    return <h1 style={{ color: "black" }}>"Loading"</h1>;
+    return (
+      <div className="loading-animation-cotainer">
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
   }
   return (
     <>
