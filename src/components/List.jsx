@@ -1,5 +1,6 @@
 import "./List.css";
 import { useEffect } from "react";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 export default function List({ activities, onDeleteActivity, goodWeather }) {
   useEffect(() => {
@@ -35,23 +36,59 @@ export default function List({ activities, onDeleteActivity, goodWeather }) {
     });
   }, [goodWeather, activities]);
 
+  // For Drag&Drop:
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const reorderedItems = Array.from(listItems);
+    const [removed] = reorderedItems.splice(result.source.index, 1);
+    reorderedItems.splice(result.destination.index, 0, removed);
+
+    setListItems(reorderedItems);
+  };
+
+  //
+
   return (
-    <>
-      <ul className="list">
-        {activities.map((activity) => (
-          <li key={activity.id}>
-            <h3>{activity.name}</h3>
-            <button
-              type="button"
-              aria-label="delete list item"
-              onClick={() => onDeleteActivity(activity.id)}
-            >
-              ✕
-            </button>
-          </li>
-        ))}
-      </ul>
-      <div className="separator"></div>
-    </>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <Droppable droppableId="activities">
+        {(provided) => (
+          <ul
+            className="list"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {activities.map((activity, index) => (
+              <Draggable
+                key={activity.id}
+                draggableId={activity.id}
+                index={index}
+              >
+                {(provided) => (
+                  <li
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <h3>{activity.name}</h3>
+                    <button
+                      type="button"
+                      aria-label="delete list item"
+                      onClick={() => onDeleteActivity(activity.id)}
+                    >
+                      ✕
+                    </button>
+                  </li>
+                )}
+              </Draggable>
+            ))}
+            <div className="drag-drop-placeholder">{provided.placeholder}</div>
+          </ul>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 }
